@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POTSTrack - Reports</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">POTSTrack</div>
+        <div class="nav-links">
+            <a href="index.html">DASHBOARD</a>
+            <a href="vitals.html">VITALS</a>
+            <a href="symptoms.html">SYMPTOMS</a>
+            <a href="medications.html">MEDICATIONS</a>
+            <a href="reports.html" class="active">REPORTS</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="emergency-bar">
+            <button class="emergency-btn" onclick="triggerEmergency()">⚠ EMERGENCY</button>
+        </div>
+
+        <h1>MEDICAL REPORTS</h1>
+
+        <div class="card">
+            <h2>GENERATE REPORT</h2>
+            <div class="form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>START DATE</label>
+                        <input type="date" id="startDate" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>END DATE</label>
+                        <input type="date" id="endDate" class="form-input">
+                    </div>
+                </div>
+                <div class="report-buttons">
+                    <button class="btn-primary" onclick="generateReport()">GENERATE REPORT</button>
+                    <button class="btn-secondary" onclick="exportToCSV()">EXPORT TO CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>WEEKLY SUMMARY</h2>
+            <div class="summary-grid" id="weeklySummary">
+                <div class="summary-card">
+                    <h3>AVERAGE HEART RATE</h3>
+                    <div class="summary-value" id="avgHR">--</div>
+                    <div class="summary-label">BPM</div>
+                </div>
+                <div class="summary-card">
+                    <h3>AVERAGE BP</h3>
+                    <div class="summary-value" id="avgBP">--/--</div>
+                    <div class="summary-label">mmHg</div>
+                </div>
+                <div class="summary-card">
+                    <h3>SYMPTOM DAYS</h3>
+                    <div class="summary-value" id="symptomDays">0</div>
+                    <div class="summary-label">of 7 days</div>
+                </div>
+                <div class="summary-card">
+                    <h3>MEDICATION ADHERENCE</h3>
+                    <div class="summary-value" id="medAdherence">0%</div>
+                    <div class="summary-label">compliance</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>SYMPTOM TRENDS</h2>
+            <div class="trends-chart" id="symptomTrends">
+                <canvas id="trendsCanvas"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>EMERGENCY CONTACTS</h2>
+            <form id="emergencyForm" class="form">
+                <div class="form-group">
+                    <label>PRIMARY CONTACT NAME</label>
+                    <input type="text" id="contactName" class="form-input" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label>PRIMARY CONTACT PHONE</label>
+                    <input type="tel" id="contactPhone" class="form-input" placeholder="+1234567890">
+                </div>
+                <div class="form-group">
+                    <label>PHYSICIAN NAME</label>
+                    <input type="text" id="physicianName" class="form-input" placeholder="Dr. Name">
+                </div>
+                <div class="form-group">
+                    <label>PHYSICIAN PHONE</label>
+                    <input type="tel" id="physicianPhone" class="form-input" placeholder="+1234567890">
+                </div>
+                <button type="submit" class="btn-primary">SAVE CONTACTS</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>DATA MANAGEMENT</h2>
+            <div class="data-buttons">
+                <button class="btn-secondary" onclick="backupData()">BACKUP DATA</button>
+                <button class="btn-secondary" onclick="document.getElementById('restoreInput').click()">RESTORE DATA</button>
+                <button class="btn-danger" onclick="clearAllData()">CLEAR ALL DATA</button>
+            </div>
+            <input type="file" id="restoreInput" style="display:none" accept=".json" onchange="restoreData(event)">
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        loadWeeklySummary();
+        loadEmergencyContacts();
+        setDefaultDates();
+        
+        document.getElementById('emergencyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            saveEmergencyContacts();
+        });
+    </script>
+</body>
+</html>

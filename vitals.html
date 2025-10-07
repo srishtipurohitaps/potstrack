@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POTSTrack - Vitals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">POTSTrack</div>
+        <div class="nav-links">
+            <a href="index.html">DASHBOARD</a>
+            <a href="vitals.html" class="active">VITALS</a>
+            <a href="symptoms.html">SYMPTOMS</a>
+            <a href="medications.html">MEDICATIONS</a>
+            <a href="reports.html">REPORTS</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="emergency-bar">
+            <button class="emergency-btn" onclick="triggerEmergency()">⚠ EMERGENCY</button>
+        </div>
+
+        <h1>VITAL SIGNS</h1>
+
+        <div class="card">
+            <h2>LOG VITAL SIGNS</h2>
+            <form id="vitalsForm" class="form">
+                <div class="form-group">
+                    <label>POSITION</label>
+                    <select id="position" class="form-input">
+                        <option value="lying">Lying Down</option>
+                        <option value="sitting">Sitting</option>
+                        <option value="standing">Standing</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>HEART RATE (BPM)</label>
+                        <input type="number" id="heartRate" class="form-input" placeholder="72" required>
+                    </div>
+                    <div class="form-group">
+                        <label>SYSTOLIC (mmHg)</label>
+                        <input type="number" id="systolic" class="form-input" placeholder="120" required>
+                    </div>
+                    <div class="form-group">
+                        <label>DIASTOLIC (mmHg)</label>
+                        <input type="number" id="diastolic" class="form-input" placeholder="80" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>SODIUM (mg)</label>
+                        <input type="number" id="sodium" class="form-input" placeholder="2000">
+                    </div>
+                    <div class="form-group">
+                        <label>FLUID (ml)</label>
+                        <input type="number" id="fluid" class="form-input" placeholder="500">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">SAVE VITALS</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>ORTHOSTATIC TEST</h2>
+            <div class="orthostatic-test" id="orthoTest">
+                <div class="test-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>LIE DOWN FOR 5 MINUTES</h3>
+                        <p>Rest in a lying position and relax</p>
+                        <button class="btn-secondary" onclick="startOrthoTest()">START TEST</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>TODAY'S VITALS HISTORY</h2>
+            <div class="vitals-history" id="vitalsHistory">
+                <div class="no-data">No vitals logged today</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        loadVitalsHistory();
+        
+        document.getElementById('vitalsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            saveVitals();
+        });
+    </script>
+</body>
+</html>

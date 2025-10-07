@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POTSTrack - Medications</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">POTSTrack</div>
+        <div class="nav-links">
+            <a href="index.html">DASHBOARD</a>
+            <a href="vitals.html">VITALS</a>
+            <a href="symptoms.html">SYMPTOMS</a>
+            <a href="medications.html" class="active">MEDICATIONS</a>
+            <a href="reports.html">REPORTS</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="emergency-bar">
+            <button class="emergency-btn" onclick="triggerEmergency()">⚠ EMERGENCY</button>
+        </div>
+
+        <h1>MEDICATION MANAGEMENT</h1>
+
+        <div class="card">
+            <h2>ADD MEDICATION</h2>
+            <form id="medicationForm" class="form">
+                <div class="form-group">
+                    <label>MEDICATION NAME</label>
+                    <input type="text" id="medName" class="form-input" placeholder="e.g., Fludrocortisone" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>DOSAGE</label>
+                        <input type="text" id="medDosage" class="form-input" placeholder="e.g., 0.1mg" required>
+                    </div>
+                    <div class="form-group">
+                        <label>FREQUENCY</label>
+                        <select id="medFrequency" class="form-input" required>
+                            <option value="once">Once Daily</option>
+                            <option value="twice">Twice Daily</option>
+                            <option value="three">Three Times Daily</option>
+                            <option value="asneeded">As Needed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>TIME(S)</label>
+                    <input type="text" id="medTimes" class="form-input" placeholder="e.g., 8:00 AM, 8:00 PM">
+                </div>
+
+                <button type="submit" class="btn-primary">ADD MEDICATION</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>TODAY'S MEDICATIONS</h2>
+            <div class="medication-list" id="todayMeds">
+                <div class="no-data">No medications scheduled for today</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>ALL MEDICATIONS</h2>
+            <div class="medication-list" id="allMeds">
+                <div class="no-data">No medications added yet</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>MEDICATION LOG</h2>
+            <div class="med-log" id="medLog">
+                <div class="no-data">No medications taken today</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        loadMedications();
+        loadMedicationLog();
+        
+        document.getElementById('medicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            addMedication();
+        });
+    </script>
+</body>
+</html>

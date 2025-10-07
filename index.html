@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POTSTrack - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">POTSTrack</div>
+        <div class="nav-links">
+            <a href="index.html" class="active">DASHBOARD</a>
+            <a href="vitals.html">VITALS</a>
+            <a href="symptoms.html">SYMPTOMS</a>
+            <a href="medications.html">MEDICATIONS</a>
+            <a href="reports.html">REPORTS</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="emergency-bar">
+            <button class="emergency-btn" onclick="triggerEmergency()">⚠ EMERGENCY</button>
+        </div>
+
+        <h1>TODAY'S OVERVIEW</h1>
+        
+        <div class="dashboard-grid">
+            <div class="card vital-card">
+                <h2>HEART RATE</h2>
+                <div class="vital-value" id="currentHR">72</div>
+                <div class="vital-label">BPM</div>
+                <div class="vital-status">Normal</div>
+            </div>
+
+            <div class="card vital-card">
+                <h2>BLOOD PRESSURE</h2>
+                <div class="vital-value" id="currentBP">120/80</div>
+                <div class="vital-label">mmHg</div>
+                <div class="vital-status">Normal</div>
+            </div>
+
+            <div class="card vital-card">
+                <h2>SODIUM INTAKE</h2>
+                <div class="vital-value" id="sodiumIntake">0</div>
+                <div class="vital-label">of 8000mg</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="sodiumProgress"></div>
+                </div>
+            </div>
+
+            <div class="card vital-card">
+                <h2>FLUID INTAKE</h2>
+                <div class="vital-value" id="fluidIntake">0</div>
+                <div class="vital-label">of 2500ml</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="fluidProgress"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h2>QUICK ACTIONS</h2>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="quickLog('vitals')">LOG VITALS</button>
+                <button class="action-btn" onclick="quickLog('symptom')">LOG SYMPTOM</button>
+                <button class="action-btn" onclick="quickLog('medication')">TAKE MEDICATION</button>
+                <button class="action-btn" onclick="quickLog('water')">ADD WATER</button>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h2>RECENT ACTIVITY</h2>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">No recent activity</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        updateDashboard();
+        loadRecentActivity();
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POTSTrack - Symptoms</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">POTSTrack</div>
+        <div class="nav-links">
+            <a href="index.html">DASHBOARD</a>
+            <a href="vitals.html">VITALS</a>
+            <a href="symptoms.html" class="active">SYMPTOMS</a>
+            <a href="medications.html">MEDICATIONS</a>
+            <a href="reports.html">REPORTS</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="emergency-bar">
+            <button class="emergency-btn" onclick="triggerEmergency()">⚠ EMERGENCY</button>
+        </div>
+
+        <h1>SYMPTOM TRACKING</h1>
+
+        <div class="card">
+            <h2>LOG SYMPTOMS</h2>
+            <form id="symptomForm" class="form">
+                <div class="symptoms-grid">
+                    <div class="symptom-card" data-symptom="dizziness">
+                        <h3>Dizziness</h3>
+                        <div class="severity-selector">
+                            <button type="button" class="severity-btn" data-value="0">0</button>
+                            <button type="button" class="severity-btn" data-value="1">1</button>
+                            <button type="button" class="severity-btn" data-value="2">2</button>
+                            <button type="button" class="severity-btn" data-value="3">3</button>
+                            <button type="button" class="severity-btn" data-value="4">4</button>
+                            <button type="button" class="severity-btn" data-value="5">5</button>
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="brainfog">
+                        <h3>Brain Fog</h3>
+                        <div class="severity-selector">
+                            <button type="button" class="severity-btn" data-value="0">0</button>
+                            <button type="button" class="severity-btn" data-value="1">1</button>
+                            <button type="button" class="severity-btn" data-value="2">2</button>
+                            <button type="button" class="severity-btn" data-value="3">3</button>
+                            <button type="button" class="severity-btn" data-value="4">4</button>
+                            <button type="button" class="severity-btn" data-value="5">5</button>
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="fatigue">
+                        <h3>Fatigue</h3>
+                        <div class="severity-selector">
+                            <button type="button" class="severity-btn" data-value="0">0</button>
+                            <button type="button" class="severity-btn" data-value="1">1</button>
+                            <button type="button" class="severity-btn" data-value="2">2</button>
+                            <button type="button" class="severity-btn" data-value="3">3</button>
+                            <button type="button" class="severity-btn" data-value="4">4</button>
+                            <button type="button" class="severity-btn" data-value="5">5</button>
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="palpitations">
+                        <h3>Palpitations</h3>
+                        <div class="severity-selector">
+                            <button type="button" class="severity-btn" data-value="0">0</button>
+                            <button type="button" class="severity-btn" data-value="1">1</button>
+                            <button type="button" class="severity-btn" data-value="2">2</button>
+                            <button type="button" class="severity-btn" data-value="3">3</button>
+                            <button type="button" class="severity-btn" data-value="4">4</button>
+                            <button type="button" class="severity-btn" data-value="5">5</button>
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="nausea">
+                        <h3>Nausea</h3>
+                        <div class="severity-selector">
+                            <button type="button" class="severity-btn" data-value="0">0</button>
+                            <button type="button" class="severity-btn" data-value="1">1</button>
+                            <button type="button" class="severity-btn" data-value="2">2</button>
+                            <button type="button" class="severity-btn" data-value="3">3</button>
+                            <button type="button" class="severity-btn" data-value="4">4</button>
+                            <button type="button" class="severity-btn" data-value="5">5</button>
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="weakness">
+                        <h3>Weakness</h3>
+                        <div class="severity-selector">
+                            <button type="button" class="severity-btn" data-value="0">0</button>
+                            <button type="button" class="severity-btn" data-value="1">1</button>
+                            <button type="button" class="severity-btn" data-value="2">2</button>
+                            <button type="button" class="severity-btn" data-value="3">3</button>
+                            <button type="button" class="severity-btn" data-value="4">4</button>
+                            <button type="button" class="severity-btn" data-value="5">5</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>NOTES</label>
+                    <textarea id="symptomNotes" class="form-input" rows="3" placeholder="Any triggers or additional notes..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">SAVE SYMPTOMS</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>SYMPTOM HISTORY</h2>
+            <div class="symptom-history" id="symptomHistory">
+                <div class="no-data">No symptoms logged today</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        loadSymptomHistory();
+        initSymptomButtons();
+        
+        document.getElementById('symptomForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            saveSymptoms();
+        });
+    </script>
+</body>
+</html>
